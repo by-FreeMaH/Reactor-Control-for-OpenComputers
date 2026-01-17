@@ -1,15 +1,13 @@
--- Reactor Control GUI Updater (std libs only)
--- Original Author: P1KaChU337
--- Modified by: by-FreeMaH
+-- Reactor Control GUI Installer (std libs only)
+-- Author: P1KaChU337
 
 ------------------------------------ config ------------------------------------
 local REPOSITORY  = "https://raw.githubusercontent.com/by-FreeMaH/Reactor-Control-for-OpenComputers/refs/heads/main/"
 
 local filesToDownload = {
-  {url = REPOSITORY.."home/nr_v1.1.lua", path="/home/main.lua"},
+  {url = REPOSITORY.."home/nr_v1.1.lua",                path="/home/main.lua"},
 }
-
-local newVer = "1.1.2"
+local newVer = "1.1.3"
 local oldVer = "1.0"
 local f = io.open("oldVersion.txt", "r")
 if f then
@@ -91,7 +89,7 @@ local function drawChrome()
   frame(X,Y,W,H)
   -- title
   text(X+2, Y, "┤ "..appTitle.." ├", COL_TEXT)
-  text(X+W-20, Y, "[by-FreeMaH]", COL_DIM)
+  text(X+W-20, Y, "[by FreeMaH]", COL_DIM)
   -- логотип
   text(X+W-15, Y+1, "☢ REACTOR", COL_WARN)
   -- секции
@@ -135,7 +133,7 @@ end
 local function install()
   drawChrome()
   ensureDirs()
-  writeStatus("Initializing updater…", COL_DIM)
+  writeStatus("Initializing installer…", COL_DIM)
   log("Preparing directories…", COL_DIM)
 
   local total = #filesToDownload
@@ -143,7 +141,7 @@ local function install()
 
   for i, f in ipairs(filesToDownload) do
     local label = string.format("[%02d/%02d] %s", i, total, shorten(f.path,30))
-    writeStatus("Updating "..label, COL_TEXT)
+    writeStatus("Downloading "..label, COL_TEXT)
     log("wget "..shorten(f.url,45), COL_DIM)
 
     local res = shell.execute("wget -fq "..f.url.." "..f.path)
@@ -165,15 +163,15 @@ local function install()
 
   local f = io.open("/home/.shrc","w")
   if f then f:write("main.lua\n"); f:close() end
-  log("Autostart preserved: /home/.shrc", COL_OK)
+  log("Autostart set: /home/.shrc -> main.lua", COL_OK)
 
   if failCount == 0 then
-    writeStatus("Update v".. oldVer .." → v" .. newVer .." complete!", COL_OK)
+    writeStatus("Update v".. oldVer .." --> v" .. newVer .." complete! All OK.", COL_OK)
   else
-    writeStatus("Update completed with errors. Check log.", COL_WARN)
+    writeStatus("Completed with errors. Check log.", COL_WARN)
   end
 
-  text(X+2, Y+H-2, "by-FreeMaH | Reactor Control Updater", COL_DIM)
+  text(X+2, Y+H-2, "by FreeMaH | Reactor Control Updater", COL_DIM)
 
   if rebootAfter then
     for n=5,1,-1 do
@@ -191,6 +189,11 @@ local ok, err = pcall(install)
 safeSetBG(oldBG); safeSetFG(oldFG)
 if not ok then
   term.clear()
-  io.stderr:write("Updater crashed: "..tostring(err).."\n")
+  io.stderr:write("Installer crashed: "..tostring(err).."\n")
 end
+
+
+
+
+
 
