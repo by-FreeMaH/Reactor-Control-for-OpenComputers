@@ -2706,7 +2706,7 @@ local function checkVer()
             for _, c in ipairs(cornerPos) do
                 buffer.drawText(c[1], c[2], 0xcccccc, brailleChar(brail_status[c[3]]))
             end
-            buffer.drawText(45, 23, 0x000000, "Доступно обновление Reactor Control by FreeMaH (v" .. progVer ..", --> v" .. newVer .. ").")
+            buffer.drawText(45, 23, 0x000000, "Доступно обновление Reactor Control by-FreeMaH (v" .. progVer ..", --> v" .. newVer .. ").")
             buffer.drawText(43, 24, 0x000000, "Нажмите \"ОК\" для продолжения без обновления или \"Установить\" для обновления.")
             animatedButton(1, 70, 25, "Ок", nil, nil, 6, nil, nil, 0x8100cc, 0xffffff)
             animatedButton(1, 80, 25, "Установить", nil, nil, 10, nil, nil, 0x8100cc, 0xffffff)    
