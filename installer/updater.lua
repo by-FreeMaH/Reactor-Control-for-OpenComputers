@@ -1,9 +1,9 @@
 -- Reactor Control GUI Updater (std libs only)
 -- Original Author: P1KaChU337
--- Modified by: by-FreeMaN
+-- Modified by: by-FreeMaH
 
 ------------------------------------ config ------------------------------------
-local REPOSITORY  = "https://raw.githubusercontent.com/by-FreeMaN/Reactor-Control-for-OpenComputers/refs/heads/main/"
+local REPOSITORY  = "https://raw.githubusercontent.com/by-FreeMaH/Reactor-Control-for-OpenComputers/refs/heads/main/"
 
 local filesToDownload = {
   {url = REPOSITORY.."home/nr_v1.1.lua", path="/home/main.lua"},
@@ -91,7 +91,7 @@ local function drawChrome()
   frame(X,Y,W,H)
   -- title
   text(X+2, Y, "┤ "..appTitle.." ├", COL_TEXT)
-  text(X+W-20, Y, "[by-FreeMaN]", COL_DIM)
+  text(X+W-20, Y, "[by-FreeMaH]", COL_DIM)
   -- логотип
   text(X+W-15, Y+1, "☢ REACTOR", COL_WARN)
   -- секции
@@ -173,7 +173,7 @@ local function install()
     writeStatus("Update completed with errors. Check log.", COL_WARN)
   end
 
-  text(X+2, Y+H-2, "by-FreeMaN | Reactor Control Updater", COL_DIM)
+  text(X+2, Y+H-2, "by-FreeMaH | Reactor Control Updater", COL_DIM)
 
   if rebootAfter then
     for n=5,1,-1 do
@@ -193,3 +193,4 @@ if not ok then
   term.clear()
   io.stderr:write("Updater crashed: "..tostring(err).."\n")
 end
+
